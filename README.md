@@ -1,7 +1,9 @@
 # android_custom_dialog_fragment
 DialogFragment  with custom layout
+
 En este breve tutorial vermos como crean un Dialogo personalizado
-1. Lo primero es hacer el layout del dialogo.
+
+1.  Lo primero es hacer el layout del dialogo.
 ```
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -47,7 +49,7 @@ En este breve tutorial vermos como crean un Dialogo personalizado
 ```
 
 2. Creamos una interfaz para poder comunicar los eventos del dialogo con la Actividad que invoca este elemento.
-3. 
+
 ```
 public interface CustomDialogListener {
 
