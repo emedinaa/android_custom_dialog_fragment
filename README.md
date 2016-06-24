@@ -1,7 +1,7 @@
 # android_custom_dialog_fragment
 DialogFragment  with custom layout
 
-En este breve tutorial vermos como crean un Dialogo personalizado
+En este breve tutorial vermos como crear un Dialogo personalizado
 
 1.  Lo primero es hacer el layout del dialogo.
 ```
