@@ -18,14 +18,12 @@ import com.emedinaa.android.customdialog.R;
  */
 public class CustomDialogFragment extends DialogFragment {
 
-    
+
     private CustomDialogListener mListener;
 
     public CustomDialogFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -34,7 +32,7 @@ public class CustomDialogFragment extends DialogFragment {
             mListener = (CustomDialogListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement CustomDialogListener");
         }
     }
 
