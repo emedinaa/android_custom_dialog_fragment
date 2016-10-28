@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
 
     @Override
     public void onDialogPositive(Object object) {
-        Toast.makeText(this,"Custom Dialog "+getString(R.string.signin),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Custom Dialog "+  getString(R.string.signin)+" "+object.toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override

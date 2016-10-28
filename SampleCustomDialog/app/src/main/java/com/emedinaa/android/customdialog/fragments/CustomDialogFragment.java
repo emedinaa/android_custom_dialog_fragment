@@ -9,7 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 
 import com.emedinaa.android.customdialog.R;
 
@@ -19,7 +22,11 @@ import com.emedinaa.android.customdialog.R;
 public class CustomDialogFragment extends DialogFragment {
 
 
+    private static final String TAG = "CustomDialogF";
     private CustomDialogListener mListener;
+    private String username;
+    private String password;
+    private EditText eteUsername,etePassword;
 
     public CustomDialogFragment() {
         // Required empty public constructor
@@ -51,14 +58,24 @@ public class CustomDialogFragment extends DialogFragment {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.fragment_custom_dialog, null))
+
+        View customView= inflater.inflate(R.layout.fragment_custom_dialog,null);
+        eteUsername= (EditText) customView.findViewById(R.id.eteUsername);
+        etePassword= (EditText) customView.findViewById(R.id.etePassword);
+
+        builder.setView(customView)
                 // Add action buttons
                 .setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...
                         if(mListener!=null){
-                            mListener.onDialogPositive(null);
+                            if(validateForm()) {
+                                String message = String.format("username %s password %s",username,password);
+                                Log.v(TAG, message);
+
+                                mListener.onDialogPositive(message);
+                            }
                         }
                     }
                 })
@@ -71,6 +88,15 @@ public class CustomDialogFragment extends DialogFragment {
                     }
                 });
         return builder.create();
+    }
+
+    private boolean validateForm() {
+        username= eteUsername.getText().toString().trim();
+        password= etePassword.getText().toString().trim();
+
+        if(username.isEmpty())return false;
+        if(password.isEmpty())return false;
+        return true;
     }
 
     @Override
