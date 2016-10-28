@@ -8,11 +8,10 @@ En este breve tutorial veremos como crear un Dialogo personalizado
 ```
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.CustomDialogFragment">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -24,7 +23,7 @@ En este breve tutorial veremos como crear un Dialogo personalizado
         android:textColor="@color/white"
         android:contentDescription="@string/app_name" />
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/eteUsername"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +33,7 @@ En este breve tutorial veremos como crear un Dialogo personalizado
         android:layout_marginBottom="4dp"
         android:hint="@string/username" />
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/etePassword"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,9 +43,8 @@ En este breve tutorial veremos como crear un Dialogo personalizado
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif"
         android:hint="@string/password"/>
-
-
 </LinearLayout>
+
 ```
 
 2 .  Creamos una interfaz para poder comunicar los eventos del dialogo con la Actividad que invoca este elemento.
@@ -63,7 +61,7 @@ public interface CustomDialogListener {
 
 3 .  Creamos un DialogFragment
 ```
-    @NonNull
+@NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -72,14 +70,24 @@ public interface CustomDialogListener {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.fragment_custom_dialog, null))
+
+        View customView= inflater.inflate(R.layout.fragment_custom_dialog,null);
+        eteUsername= (EditText) customView.findViewById(R.id.eteUsername);
+        etePassword= (EditText) customView.findViewById(R.id.etePassword);
+
+        builder.setView(customView)
                 // Add action buttons
                 .setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...
                         if(mListener!=null){
-                            mListener.onDialogPositive(null);
+                            if(validateForm()) {
+                                String message = String.format("username %s password %s",username,password);
+                                Log.v(TAG, message);
+
+                                mListener.onDialogPositive(message);
+                            }
                         }
                     }
                 })
@@ -97,6 +105,17 @@ public interface CustomDialogListener {
 
 4 .  En la actividad invocamos al Dialogo
 ```
+package com.emedinaa.android.customdialog;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.emedinaa.android.customdialog.fragments.CustomDialogFragment;
+import com.emedinaa.android.customdialog.fragments.CustomDialogListener;
+
 public class MainActivity extends AppCompatActivity  implements CustomDialogListener{
 
     private Button btnDialog;
@@ -137,7 +156,7 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
 
     @Override
     public void onDialogPositive(Object object) {
-        Toast.makeText(this,"Custom Dialog "+getString(R.string.signin),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Custom Dialog "+  getString(R.string.signin)+" "+object.toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,7 +164,6 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
         Toast.makeText(this,"Custom Dialog "+getString(R.string.cancel),Toast.LENGTH_SHORT).show();
     }
 }
-
 ```
 
 ![screenshot01](https://github.com/emedinaa/android_custom_dialog_fragment/blob/master/screenshot01.png)
