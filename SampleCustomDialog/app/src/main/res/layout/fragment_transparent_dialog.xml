@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/background_dialog"
+    tools:context=".fragments.CustomDialogFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/background_header"
+        android:text="@string/android_app"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"
+        android:contentDescription="@string/app_name" />
+    <EditText
+        android:id="@+id/eteUsername"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="@string/username" />
+    <EditText
+        android:id="@+id/etePassword"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:fontFamily="sans-serif"
+        android:hint="@string/password"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Cancel"
+                android:id="@+id/tviCancel"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="Sign in"
+                android:id="@+id/tviOk"/>
+        </LinearLayout>
+</LinearLayout>

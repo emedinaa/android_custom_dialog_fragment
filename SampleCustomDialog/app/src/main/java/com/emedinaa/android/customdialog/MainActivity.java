@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.emedinaa.android.customdialog.fragments.CustomDialogFragment;
 import com.emedinaa.android.customdialog.fragments.CustomDialogListener;
+import com.emedinaa.android.customdialog.fragments.TransparentDialogFragment;
 
 public class MainActivity extends AppCompatActivity  implements CustomDialogListener{
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
             @Override
             public void onClick(View v) {
                 showCustomDialog();
+                //showTransparentDialog();
             }
         });
     }
@@ -37,6 +39,13 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
         dialog.show(getSupportFragmentManager(), "CustomDialogFragment");
 
     }
+
+    private void showTransparentDialog() {
+        TransparentDialogFragment dialog = new TransparentDialogFragment();
+        dialog.show(getSupportFragmentManager(), "TransparentDialogFragment");
+
+    }
+
 
     /**
      * COMUNICACION ENTRE EL DIALOGO CON LA ACTIVIDAD
