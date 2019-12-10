@@ -1,16 +1,17 @@
 package com.emedinaa.android.customdialog;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.emedinaa.android.customdialog.fragments.CustomDialogFragment;
 import com.emedinaa.android.customdialog.fragments.CustomDialogListener;
 import com.emedinaa.android.customdialog.fragments.TransparentDialogFragment;
 
-public class MainActivity extends AppCompatActivity  implements CustomDialogListener{
+public class MainActivity extends AppCompatActivity implements CustomDialogListener{
 
     private Button btnDialog;
 
@@ -19,17 +20,16 @@ public class MainActivity extends AppCompatActivity  implements CustomDialogList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ui();
-
     }
 
     private void ui() {
 
-        btnDialog= (Button) findViewById(R.id.btnDialog);
+        btnDialog= findViewById(R.id.btnDialog);
         btnDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCustomDialog();
-                //showTransparentDialog();
+                //showCustomDialog();
+                showTransparentDialog();
             }
         });
     }
