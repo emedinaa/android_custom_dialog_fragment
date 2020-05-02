@@ -22,13 +22,11 @@ class MainKActivity : AppCompatActivity(),CustomDialogKListener {
     private fun showCustomDialog() {
         val dialog = CustomDialogKFragment()
         dialog.show(supportFragmentManager, "CustomDialogFragment")
-
     }
 
     private fun showTransparentDialog() {
         val dialog = TransparentDialogKFragment()
         dialog.show(supportFragmentManager, "TransparentDialogFragment")
-
     }
 
     /**

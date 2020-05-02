@@ -2,7 +2,6 @@ package com.emedinaa.android.customdialog.fragments
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,10 +54,16 @@ class CustomDialogKFragment : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is CustomDialogKListener) {
+
+        if(targetFragment is CustomDialogKListener){
+            listener = targetFragment as? CustomDialogKListener
+            return
+        }
+
+        if(context is CustomDialogKListener){
             listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement CustomDialogKListener")
+        }else{
+            throw RuntimeException(" $context must implement CustomDialogKListener")
         }
     }
 

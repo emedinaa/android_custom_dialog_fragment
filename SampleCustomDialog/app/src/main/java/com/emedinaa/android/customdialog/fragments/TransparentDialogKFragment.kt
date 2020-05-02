@@ -62,6 +62,12 @@ class TransparentDialogKFragment : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        if(targetFragment is CustomDialogKListener){
+            listener = targetFragment as? CustomDialogKListener
+            return
+        }
+
         if (context is CustomDialogKListener) {
             listener = context
         } else {
@@ -116,7 +122,7 @@ class TransparentDialogKFragment : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun validateForm(): Boolean {
